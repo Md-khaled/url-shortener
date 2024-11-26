@@ -1,0 +1,9 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    dd(\Illuminate\Support\Str::random(6));
+    return view('welcome');
+});
+
