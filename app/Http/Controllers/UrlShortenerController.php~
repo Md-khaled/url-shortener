@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Services\UrlShortenerService;
+use Illuminate\Http\Request;
+
+class UrlShortenerController extends Controller
+{
+    public function __construct(UrlShortenerService $urlShortenerService)
+    {
+        $this->urlShortenerService = $urlShortenerService;
+    }
+
+    public function shorten(Request $request)
+    {
+        try {
+            $shortCode = $this->urlShortenerService->shorten(
+                $request->mergeIfMissing(
+                    [
+                        'custom_short_code' => null
+                    ]
+                ),
+            );
+
+            return response()->json([
+                'short_url' => url($shortCode),
+            ]);
+        } catch (\Throwable $exception) {
+            return $this->handleException($exception);
+        }
+    }
+
+    public function resolve(string $shortCode)
+    {
+        try {
+            $originalUrl = $this->urlShortenerService->resolve($shortCode);
+
+            return redirect($originalUrl);
+        } catch (\Throwable $exception) {
+            return $this->handleException($exception);
+        }
+    }
+}
