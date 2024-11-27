@@ -3,11 +3,14 @@
 namespace App\Http\Requests;
 
 use App\Actions\CodeGenerator\ShortCodeGenerator;
+use App\Traits\FailedValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 use function App\Helpers\short_code_generator;
 
 class UrlValidateRequest extends FormRequest
 {
+    use FailedValidationErrors;
+
     /**
      * Determine if the user is authorized to make this request.
      */
