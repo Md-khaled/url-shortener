@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UrlValidateRequest;
 use App\Responses\JSResponse;
 use App\Services\UrlShortenerService;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
