@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Actions\CodeGenerator\ShortCodeGenerator;
 use Illuminate\Foundation\Http\FormRequest;
+use function App\Helpers\short_code_generator;
 
 class UrlValidateRequest extends FormRequest
 {
@@ -44,7 +45,7 @@ class UrlValidateRequest extends FormRequest
     {
         $this->mergeIfMissing([
             $url = 'original_url' => $this->$url,
-            'short_code' => (new ShortCodeGenerator())->generate(),
+            'short_code' => short_code_generator(),
         ]);
     }
 }

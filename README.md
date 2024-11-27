@@ -75,7 +75,7 @@ A Laravel-based URL shortener service that converts long URLs into short, unique
 
 9. Access the application at:
     ```
-    http://localhost:8000
+    http://localhost:8000/api
     ```
 
 ---

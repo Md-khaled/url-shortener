@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UrlValidateRequest;
 use App\Services\UrlShortenerService;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+use function App\Helpers\short_code_generator;
 
 class UrlShortenerController extends Controller
 {
@@ -24,6 +26,7 @@ class UrlShortenerController extends Controller
                 'short_url' => $shortCode,
             ]);
         } catch (\Throwable $exception) {
+            dd($exception->getMessage());
             Log::error($exception->getMessage());
             return $this->handleException($exception);
         }
@@ -32,7 +35,7 @@ class UrlShortenerController extends Controller
     public function resolveUrl(string $shortCode)
     {
         try {
-            $originalUrl = $this->urlShortenerService->resolveShortCodeToUrl($shortCode);
+            $originalUrl = $this->urlShortenerService->resolveShortCodeToUrl(Str::squish($shortCode));
 
             return redirect($originalUrl);
         } catch (\Throwable $exception) {
