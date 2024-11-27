@@ -5,7 +5,7 @@ namespace App\Helpers;
 use App\Actions\CodeGenerator\ShortCodeGenerator;
 use App\Actions\CodeGenerator\UlidShortCodeGenerator;
 
-define('API_PREFIX', 'api');
+const API_PREFIX = 'api';
 
 if (!function_exists('api_prefix')) {
     function api_prefix(): string
