@@ -78,6 +78,11 @@ A Laravel-based URL shortener service that converts long URLs into short, unique
     http://localhost:8000/api
     ```
 
+10. For unit testing, run the following command:
+    ```bash
+    php artisan test
+    ```
+
 ---
 
 ## Routes
