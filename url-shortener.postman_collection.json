@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "75831c8e-a9ae-4f0d-9767-5d287a443abf",
+		"name": "url-shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39141559",
+		"_collection_link": "https://gitaio.postman.co/workspace/59746e2f-441a-4463-8368-e22b1cd85819/collection/39141559-75831c8e-a9ae-4f0d-9767-5d287a443abf?action=share&source=collection_link&creator=39141559"
+	},
+	"item": [
+		{
+			"name": "Get short Url",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "original_url",
+							"value": "https://www.amazon.com/Honeywell-HT-900-TurboForce-Circulator-Black/dp/B001R1RXUG/ref=lp_3737601_1_1?pf_rd_p=53d84f87-8073-4df1-9740-1bf3fa798149&pf_rd_r=CX0X881V0KT6HPAKZEH2&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BauseApiUrl}}/shorten",
+					"host": [
+						"{{BauseApiUrl}}"
+					],
+					"path": [
+						"shorten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Short Urls",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/{{shorten}}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"{{shorten}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redired By Short Code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/url/list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"url",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
