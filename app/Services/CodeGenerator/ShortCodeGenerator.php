@@ -16,7 +16,7 @@ readonly class ShortCodeGenerator implements ShortCodeGeneratorInterface
         $this->SHORT_CODE_LENGTH = env('SHORT_CODE_LENGTH', self::RANDOM_DEFAULT_LENGTH);
     }
 
-    public function generate(?int $length): string
+    public function generate(?int $length = null): string
     {
         return Str::random($length ?? $this->SHORT_CODE_LENGTH);
     }

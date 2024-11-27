@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UrlValidateReqest;
 use App\Services\CodeGenerator\ShortCodeGenerator;
 use App\Services\UrlShortenerService;
 use Illuminate\Http\Request;
@@ -15,26 +16,22 @@ class UrlShortenerController extends Controller
     {
     }
 
-    public function shorten(Request $request)
+    public function shortenUrl(UrlValidateReqest $request)
     {
         try {
             $shortCode = $this->urlShortenerService
-                ->swapUrlToShortCode(
-                    $request->mergeIfMissing([
-                        $url = 'original_url' => $request->$url,
-                        'short_code' => $this->shortCodeGenerator->generate(),
-                    ])
-                );
+                ->swapUrlToShortCode($request->only('original_url', 'short_code'));
 
             return response()->json([
-                'short_url' => url($shortCode),
+                'short_code' => $shortCode,
             ]);
         } catch (\Throwable $exception) {
+            dd($exception->getMessage());
             return $this->handleException($exception);
         }
     }
 
-    public function resolve(string $shortCode)
+    public function resolveUrl(string $shortCode)
     {
         try {
             $originalUrl = $this->urlShortenerService->resolveShortCodeToUrl($shortCode);
