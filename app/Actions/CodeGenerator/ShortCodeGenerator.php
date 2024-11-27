@@ -16,6 +16,6 @@ readonly class ShortCodeGenerator implements ShortCodeGeneratorInterface
 
     public function generate(?int $length = null): string
     {
-        return Str::random($length ?? $this->SHORT_CODE_LENGTH);
+        return strtoupper(substr(time(), -4) . Str::random(($length ?? $this->SHORT_CODE_LENGTH) - 4));
     }
 }
