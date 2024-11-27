@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Services\CodeGenerator;
+namespace App\Actions\CodeGenerator;
 
+use App\Services\CodeGenerator\ShortCodeGeneratorInterface;
 use Illuminate\Support\Str;
 
 final readonly class UlidShortCodeGenerator implements ShortCodeGeneratorInterface

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services\CodeGenerator;
+namespace App\Actions\CodeGenerator;
 
 use App\Contracts\ShortCodeGeneratorInterface;
-use App\DTO\ShortCodeLength;
 use Illuminate\Support\Str;
 
 readonly class ShortCodeGenerator implements ShortCodeGeneratorInterface

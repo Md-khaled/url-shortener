@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UrlValidateReqest;
-use App\Services\CodeGenerator\ShortCodeGenerator;
+use App\Http\Requests\UrlValidateRequest;
 use App\Services\UrlShortenerService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class UrlShortenerController extends Controller
 {
     public function __construct(
         private UrlShortenerService $urlShortenerService,
-        private ShortCodeGenerator  $shortCodeGenerator
     )
     {
     }
 
-    public function shortenUrl(UrlValidateReqest $request)
+    public function shortenUrl(UrlValidateRequest $request)
     {
         try {
             $shortCode = $this->urlShortenerService

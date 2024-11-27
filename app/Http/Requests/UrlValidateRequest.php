@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Services\CodeGenerator\ShortCodeGenerator;
+use App\Actions\CodeGenerator\ShortCodeGenerator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UrlValidateReqest extends FormRequest
+class UrlValidateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
