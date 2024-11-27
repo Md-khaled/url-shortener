@@ -26,7 +26,6 @@ class UrlShortenerController extends Controller
                 'short_url' => $shortCode,
             ]);
         } catch (\Throwable $exception) {
-            dd($exception->getMessage());
             Log::error($exception->getMessage());
             return $this->handleException($exception);
         }
