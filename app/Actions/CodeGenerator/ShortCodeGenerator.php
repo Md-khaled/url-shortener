@@ -7,12 +7,11 @@ use Illuminate\Support\Str;
 
 readonly class ShortCodeGenerator implements ShortCodeGeneratorInterface
 {
-    private const RANDOM_DEFAULT_LENGTH = 16;
     private readonly int $SHORT_CODE_LENGTH;
 
     public function __construct()
     {
-        $this->SHORT_CODE_LENGTH = env('SHORT_CODE_LENGTH', self::RANDOM_DEFAULT_LENGTH);
+        $this->SHORT_CODE_LENGTH = config('generator.short_code_length');
     }
 
     public function generate(?int $length = null): string

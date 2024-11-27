@@ -89,4 +89,4 @@ A Laravel-based URL shortener service that converts long URLs into short, unique
 **GET** `/{shortCode}`
 
 ### 3. List All Short URLs
-**GET** `/short-urls`
+**GET** `/{shortCode}`
