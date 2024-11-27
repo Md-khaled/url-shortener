@@ -85,6 +85,13 @@ A Laravel-based URL shortener service that converts long URLs into short, unique
 ### 1. Create Short URL
 **POST** `/shorten`
 
+**Request Body:**
+```json
+{
+    "original_url": "https://example.com/long/url"
+}
+```
+
 ### 2. Redirect to Original URL
 **GET** `/{shortCode}`
 
