@@ -6,6 +6,7 @@ use App\Http\Requests\UrlValidateReqest;
 use App\Services\CodeGenerator\ShortCodeGenerator;
 use App\Services\UrlShortenerService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UrlShortenerController extends Controller
 {
@@ -23,10 +24,10 @@ class UrlShortenerController extends Controller
                 ->swapUrlToShortCode($request->only('original_url', 'short_code'));
 
             return response()->json([
-                'short_code' => $shortCode,
+                'short_url' => $shortCode,
             ]);
         } catch (\Throwable $exception) {
-            dd($exception->getMessage());
+            Log::error($exception->getMessage());
             return $this->handleException($exception);
         }
     }

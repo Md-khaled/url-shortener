@@ -16,13 +16,11 @@ class UrlShortenerService
 
     public function swapUrlToShortCode(array $urlData): string
     {
-        $urlMapping = $this->urlMappingRepository->findByOriginalUrl($urlData->original_url);
+        $urlMapping = $this->urlMappingRepository->findByOriginalUrl($urlData['original_url']);
 
-        if ($urlMapping) {
-            return $urlMapping->short_code;
-        }
+        if ($urlMapping) return $urlMapping->short_url;
 
-        return $this->urlMappingRepository->create($urlData->toArray())->short_code;
+        return $this->urlMappingRepository->create($urlData)->short_url;
     }
 
     public function resolveShortCodeToUrl(string $shortCode): ?string
