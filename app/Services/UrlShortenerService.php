@@ -27,4 +27,9 @@ class UrlShortenerService
     {
         return $this->urlMappingRepository->findByShortCode($shortCode)->original_url;
     }
+
+    public function shortUrlList()
+    {
+        return $this->urlMappingRepository->urlShortList();
+    }
 }

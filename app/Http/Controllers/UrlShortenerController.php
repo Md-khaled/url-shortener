@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UrlValidateRequest;
+use App\Responses\JSResponse;
 use App\Services\UrlShortenerService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -27,7 +28,7 @@ class UrlShortenerController extends Controller
             ]);
         } catch (\Throwable $exception) {
             Log::error($exception->getMessage());
-            return $this->handleException($exception);
+            return JSResponse::error($exception->getMessage(), null, $exception->getCode());
         }
     }
 
@@ -38,7 +39,13 @@ class UrlShortenerController extends Controller
 
             return redirect($originalUrl);
         } catch (\Throwable $exception) {
-            return $this->handleException($exception);
+            Log::error($exception->getMessage());
+            return JSResponse::error('Short code not found', null, Response::HTTP_NOT_FOUND);
         }
+    }
+
+    public function shortUrlList()
+    {
+        return $this->urlShortenerService->shortUrlList();
     }
 }

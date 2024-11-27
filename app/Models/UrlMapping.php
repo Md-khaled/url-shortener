@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use function App\Helpers\api_prefix;
 
@@ -11,9 +12,12 @@ class UrlMapping extends Model
         'original_url',
         'short_code'
     ];
+    protected $appends = ['short_url'];
 
-    public function getShortUrlAttribute(): string
+    protected function shortUrl(): Attribute
     {
-        return url(api_prefix().'/' . $this->short_code);
+        return Attribute::make(
+            get: fn () => url(api_prefix() . '/' . $this->short_code),
+        );
     }
 }

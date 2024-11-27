@@ -20,4 +20,9 @@ class UrlMappingRepository
     {
         return UrlMapping::create($data);
     }
+
+    public function urlShortList()
+    {
+        return UrlMapping::select('original_url', 'short_code')->paginate(2);
+    }
 }

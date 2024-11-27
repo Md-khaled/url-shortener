@@ -5,4 +5,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/shorten', [UrlShortenerController::class, 'shortenUrl']);
 Route::get('/{shortCode}', [UrlShortenerController::class, 'resolveUrl']);
-Route::get('/short-urls', [UrlShortenerController::class, 'shortUrlList']);
+Route::get('/url/list', [UrlShortenerController::class, 'shortUrlList']);
