@@ -23,6 +23,6 @@ class UrlMappingRepository
 
     public function urlShortList()
     {
-        return UrlMapping::select('original_url', 'short_code')->paginate(2);
+        return UrlMapping::select('original_url', 'short_code')->get()->toArray();
     }
 }

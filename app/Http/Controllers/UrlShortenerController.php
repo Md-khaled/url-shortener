@@ -7,7 +7,6 @@ use App\Responses\JSResponse;
 use App\Services\UrlShortenerService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use function App\Helpers\short_code_generator;
 
 class UrlShortenerController extends Controller
 {
@@ -28,7 +27,11 @@ class UrlShortenerController extends Controller
             ]);
         } catch (\Throwable $exception) {
             Log::error($exception->getMessage());
-            return JSResponse::error($exception->getMessage(), null, $exception->getCode());
+
+            return JSResponse::error(
+                $exception->getMessage(),
+                null, $exception->getCode()
+            );
         }
     }
 
@@ -37,15 +40,26 @@ class UrlShortenerController extends Controller
         try {
             $originalUrl = $this->urlShortenerService->resolveShortCodeToUrl(Str::squish($shortCode));
 
-            return redirect($originalUrl);
+            return JSResponse::success(
+                redirect($originalUrl),
+                'Redirect to original url',
+            );
         } catch (\Throwable $exception) {
             Log::error($exception->getMessage());
-            return JSResponse::error('Short code not found', null, Response::HTTP_NOT_FOUND);
+
+            return JSResponse::error(
+                'Short code not found',
+                null,
+                Response::HTTP_NOT_FOUND
+            );
         }
     }
 
     public function shortUrlList()
     {
-        return $this->urlShortenerService->shortUrlList();
+        return JSResponse::success(
+            $this->urlShortenerService->shortUrlList(),
+            'Short url list',
+        );
     }
 }
